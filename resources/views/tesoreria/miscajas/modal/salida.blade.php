@@ -1,0 +1,335 @@
+<div class="modal fade text-left" id="ModalSalida" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="card-header">
+                <div class="row justify-content-between">
+                    <div class="col-md-6">
+                        <h6 class="mt-2">
+                            {{ __('REGISTRAR SALIDA DE LA CAJA') }}
+                        </h6>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button type="button" style="font-size: 30px" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <img style="width: 15px" src="{{ asset('images/icon/close.png') }}" alt="cerrar">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form class="crear-salidacaja" action="{{ route('tssalidascajas.store') }}" method="POST">
+                    @csrf
+                    <div class="row">
+
+
+
+                        <div class=" form mb-1 col-md-4">
+                            <label for="documento" class="text-sm">{{ __('DOC. BENEFICIARIO') }}</label>
+                            <div class=" input-group">
+                                <input name="documento" id="documento" class="form-control form-control-sm"
+                                placeholder="Documento del beneficiario..." type="text">
+                           
+                            <button class="btn btn-sm btn-success" type="button" style="width:30.5px; height:30.5px"
+                            id="buscar_beneficiario_btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                viewBox="0 0 25 25" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;">
+                                <path
+                                    d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z">
+                                </path>
+                            </svg>
+                            </button>
+
+                            </div>
+                            
+                        </div>
+
+                        <div class="form col-md-8 mb-2">
+                            <label for="" class="text-sm">{{ __('NOMBRE BENEFICIARIO') }}</label>
+                            <input name="nombre" id="nombre" class="form-control form-control-sm"
+                                placeholder="Valide el nombre del beneficiario..." type="text">
+                            <span class="input-border"></span>
+                        </div>
+
+
+
+                        <div class="form-group col-md-5 g-3">
+                            <label for="tipo_comprobante" class="text-sm">
+                                {{ __('TIPO DE COMPROBANTE') }}
+                            </label>
+                            <br>
+                            <select name="tipo_comprobante_id" id="tipo_comprobante1"
+                                class=" form-control buscador @error('tipo_comprobante') is-invalid @enderror"
+                                aria-label="" style="width: 100%">
+                                <option value="">
+                                    Seleccione el tipo de comprobante
+                                </option>
+                                @foreach ($tiposcomprobantes as $tipocomprobante)
+                                    <option value="{{ $tipocomprobante->id }}"
+                                        {{ old('banco') == $tipocomprobante->id ? 'selected' : '' }}>
+                                        {{ $tipocomprobante->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('tipocomprobante')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+
+                        <div class="form col-md-4  mb-3">
+                            <label for="tipo_comprobante" class="text-sm">
+                                {{ __('NRO COMPROBANTE') }}
+                            </label>
+                            <input name="comprobante_correlativo" id="comprobante_correlativo"
+                                class="input form-control form-control-sm" placeholder="Correlativo del comprobante..."
+                                type="text">
+                            <span class="input-border"></span>
+                        </div>
+
+                        <div class="form col-md-3 mb-3">
+                            <label for="fecha_comprobante" class="text-sm">
+                                {{ __('FECHA COMPROB.') }}
+                            </label>
+                            <input name="fecha_comprobante" id="fecha_comprobante" class="form-control form-control-sm"
+                                placeholder="Ingrese la fecha" type="date">
+                            <span class="input-border"></span>
+                        </div>
+
+                        <div class="form-group col-md-6 g-3">
+                            <label for="caja" class="text-sm">
+                                {{ __('CAJA') }}
+                            </label>
+                            <br>
+                            <select name="caja_id" id="caja1"
+                                class="form-control form-control-sm buscador @error('caja') is-invalid @enderror"
+                                aria-label="" style="width: 100%" required="">
+                                <option selected value="">
+                                    Seleccione la caja
+                                </option>
+                                @foreach ($cajas as $caja)
+                                    <option value="{{ $caja->id }}"
+                                        {{ old('caja') == $caja->id ? 'selected' : '' }}>
+                                        {{ $caja->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('caja')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col-md-6 g-3">
+                            <label for="motivo" class="text-sm">
+                                {{ __('MOTIVO') }}
+                            </label>
+                            <br>
+                            <select name="motivo_id" id="motivo1"
+                                class=" form-control form-control-sm buscador @error('cuenta') is-invalid @enderror"
+                                aria-label="" style="width: 100%" required>
+                                <option selected value="">
+                                    Seleccione el motivo
+                                </option>
+                                @foreach ($motivos as $motivo)
+                                    <option value="{{ $motivo->id }}"
+                                        {{ old('cuenta') == $motivo->id ? 'selected' : '' }}>
+                                        {{ $motivo->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('motivo')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col-md-6 g-3">
+                            <label for="motivo" class="text-sm">
+                                {{ __('EMPRESA') }}
+                            </label>
+                            <br>
+                            <select name="empresa_id" id="empresa"
+                                class=" form-control form-control-sm buscador @error('cuenta') is-invalid @enderror"
+                                aria-label="" style="width: 100%" required>
+                                <option selected value="">
+                                    Seleccione la empresa
+                                </option>
+                                @foreach ($empresas as $empresa)
+                                    <option value="{{ $empresa->id }}"
+                                        {{ old('empresa') == $empresa->id ? 'selected' : '' }}>
+                                        {{ $empresa->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('empresa')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                       
+
+                        <div class="form col-md-12 mb-3">
+                            <label for="descripcion" class="text-sm">
+                                {{ __('DESCRIPCIÓN') }}
+                            </label>
+                            <input name="descripcion" id="descripcion" class="input form-control form-control-sm"
+                                placeholder="Ingrese la descripción" type="text">
+                            <span class="input-border"></span>
+                        </div>
+
+                        <div class="form col-md-12 mb-3">
+                            <label for="monto" class="text-sm">
+                                {{ __('MONTO') }}
+                            </label>
+                            <input name="monto" id="monto" class="input form-control form-control-sm"
+                                placeholder="Ingrese el monto" required="" type="text">
+                            <span class="input-border"></span>
+                        </div>
+
+                        
+
+                        <div class="col-md-12 text-right g-3">
+                            <button type="submit" class="btn btn-secondary btn-sm">
+                                {{ __('REGISTRAR SALIDA DE LA CAJA') }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+@push('js')
+
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            $('.buscador').select2({
+                theme: "classic"
+            });
+            $('.buscador2').select2({
+                theme: "classic"
+            });
+        });
+    </script>
+
+    <script>
+       $(document).ready(function() {
+            function isRucOrDni(value) {
+                return value.length === 8 || value.length === 11;
+            }
+
+            function buscarDocumento(url, inputId, datosId) {
+                var inputValue = $(inputId).val();
+                var tipoDocumento = inputValue.length === 8 ? 'dni' : 'ruc';
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        documento: inputValue,
+                        tipo_documento: tipoDocumento
+                    },
+                    success: function(response) {
+                        console.log('API Response:', response);
+                        if (tipoDocumento === 'dni') {
+                            $(datosId).val(response.nombres + ' ' + response.apellidoPaterno + ' ' +
+                                response.apellidoMaterno);
+                        } else {
+                            $(datosId).val(response.razonSocial);
+                        }
+                        $(datosId).removeClass('is-invalid').addClass('is-valid');
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                        $(datosId).val('');
+                        $(datosId).removeClass('is-valid').addClass('is-invalid');
+                    }
+                });
+            }
+
+
+
+            $('#buscar_beneficiario_btn').click(function() {
+                buscarDocumento('{{ route('buscar.documento') }}', '#documento',
+                    '#nombre');
+            });
+
+
+            // Input validation
+            $('.documento-input').on('input', function() {
+                var value = $(this).val();
+                var isValid = isRucOrDni(value);
+                $(this).toggleClass('is-valid', isValid);
+                $(this).toggleClass('is-invalid', !isValid);
+            });
+
+            $('.datos-input').on('input', function() {
+                var value = $(this).val();
+                $(this).toggleClass('is-valid', value.trim().length > 0);
+                $(this).toggleClass('is-invalid', value.trim().length === 0);
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Confirm dialog on form submit
+            $('.crear-salidacaja').submit(function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: '¿Crear Salida de Caja?',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#007777',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, confirmar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.submit();
+                    }
+                });
+            });
+    </script>
+
+
+
+
+
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error de validación',
+                html: '@foreach ($errors->all() as $error)<p>{{ $error }}</p>@endforeach',
+            });
+        </script>
+    @endif
+
+
+
+
+@endpush

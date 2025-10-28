@@ -1,0 +1,10 @@
+{
+    "name" : "SistemaAgrotrac",
+    "short_name": "SistemaAgrotrac",
+    "description": "",
+    "start_url": "http://app.local",
+    "display": "standalone",
+    "background_color": "#ebeaea",
+    "theme_color": "#f9fafb",
+    "orientation": "portrait-primary"
+}

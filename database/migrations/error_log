@@ -1,0 +1,116 @@
+[31-Oct-2024 07:29:51 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_05_27_121844_add_field_to_producto_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_05_27_121844_add_field_to_producto_table.php on line 7
+[31-Oct-2024 16:21:00 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_04_145125_add_field_tipo_comprobante_to_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_04_145125_add_field_tipo_comprobante_to_table.php on line 7
+[31-Oct-2024 19:58:50 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2023_11_14_232636_create_motivos_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2023_11_14_232636_create_motivos_table.php on line 7
+[01-Nov-2024 06:39:39 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_10_182125_create_tipo_moneda_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_10_182125_create_tipo_moneda_table.php on line 7
+[01-Nov-2024 07:12:05 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2023_11_15_104308_create_estados_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2023_11_15_104308_create_estados_table.php on line 7
+[01-Nov-2024 13:37:16 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_12_111815_create_productosfamilias.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_12_111815_create_productosfamilias.php on line 7
+[01-Nov-2024 19:16:15 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_07_06_130746_create_inv_ingresosrapidosdetalles.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_07_06_130746_create_inv_ingresosrapidosdetalles.php on line 7
+[26-Nov-2024 05:33:34 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_04_01_132254_remove_field_from_registros.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_04_01_132254_remove_field_from_registros.php on line 7
+[26-Nov-2024 07:24:01 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_04_12_163226_add_estado_to_programacion_registro_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_04_12_163226_add_estado_to_programacion_registro_table.php on line 7
+[26-Nov-2024 09:06:51 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_05_24_181454_create_abonados_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_05_24_181454_create_abonados_table.php on line 7
+[26-Nov-2024 09:09:22 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_05_28_133711_add_trabajador_to_ranchos_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_05_28_133711_add_trabajador_to_ranchos_table.php on line 7
+[26-Nov-2024 09:10:09 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_05_29_164002_add_usuario_to_abonado_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_05_29_164002_add_usuario_to_abonado_table.php on line 7
+[26-Nov-2024 09:12:13 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_03_100711_add_field_to_productos_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_03_100711_add_field_to_productos_table.php on line 7
+[26-Nov-2024 09:13:11 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_03_114707_create_detalleinventarioingresos_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_03_114707_create_detalleinventarioingresos_table.php on line 7
+[26-Nov-2024 09:15:08 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_10_101728_create_logdetallesinventarioingresos_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_10_101728_create_logdetallesinventarioingresos_table.php on line 7
+[26-Nov-2024 09:16:10 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_20_095457_drop_migration_columns_from_inventarioingresos.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_20_095457_drop_migration_columns_from_inventarioingresos.php on line 7
+[26-Nov-2024 09:17:17 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_30_163317_add_preciosalida_to_inventarioprestamosalidadetalles.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_06_30_163317_add_preciosalida_to_inventarioprestamosalidadetalles.php on line 7
+[26-Nov-2024 09:18:07 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_07_06_061458_create_inventarioprestamoingresos.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_07_06_061458_create_inventarioprestamoingresos.php on line 7
+[26-Nov-2024 09:24:05 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_07_14_105025_create_inv_herramientas_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_07_14_105025_create_inv_herramientas_table.php on line 7
+[26-Nov-2024 09:26:50 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_08_26_153309_create_areas_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_08_26_153309_create_areas_table.php on line 7
+[26-Nov-2024 09:27:37 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_08_26_163914_create_empleados_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_08_26_163914_create_empleados_table.php on line 7
+[26-Nov-2024 09:28:46 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_02_103709_create_tipo_comprobante_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_02_103709_create_tipo_comprobante_table.php on line 7
+[26-Nov-2024 09:31:03 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_02_112247_update_users_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_02_112247_update_users_table.php on line 7
+[26-Nov-2024 09:35:32 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_10_183952_create_ts_ingresos_cuentas_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_10_183952_create_ts_ingresos_cuentas_table.php on line 7
+[26-Nov-2024 09:37:30 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_10_184646_create_ts_cajas_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_10_184646_create_ts_cajas_table.php on line 7
+[26-Nov-2024 09:39:11 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_10_184952_create_ts_salidas_cajas_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_10_184952_create_ts_salidas_cajas_table.php on line 7
+[26-Nov-2024 15:09:43 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_10_185323_create_ts_depositos_cuentas_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_09_10_185323_create_ts_depositos_cuentas_table.php on line 7
+[27-Nov-2024 07:04:39 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_04_15_091727_create_productos_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_04_15_091727_create_productos_table.php on line 7
+[27-Nov-2024 08:49:18 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/innovaminingsys/public_html/innova/database/migrations/2024_07_06_113704_add_field_to_ingresoinventarioapertura.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/database/migrations/2024_07_06_113704_add_field_to_ingresoinventarioapertura.php on line 7

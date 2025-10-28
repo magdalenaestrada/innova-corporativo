@@ -1,0 +1,8 @@
+[25-Nov-2024 19:46:32 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/innovaminingsys/public_html/innova/routes/console.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/routes/console.php on line 17
+[26-Nov-2024 15:10:56 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Broadcast" not found in /home/innovaminingsys/public_html/innova/routes/channels.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/routes/channels.php on line 16

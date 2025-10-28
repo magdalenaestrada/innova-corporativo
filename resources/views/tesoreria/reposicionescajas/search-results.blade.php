@@ -1,0 +1,158 @@
+@if (count($reposicionescajas) > 0)
+    @foreach ($reposicionescajas as $reposicioncaja)
+    <tr>
+        <td scope="row">
+            {{ $reposicioncaja->id }}
+        </td>
+
+
+        <td scope="row">
+            {{ $reposicioncaja->salidacuenta->id }}
+        </td>
+
+        <td scope="row">
+            {{ $reposicioncaja->salidacuenta->fecha->format('d/m/Y') }}
+        </td>
+
+        <td>
+            <span class="badge bg-danger">EGRESO</span>
+            <span class="badge bg-warning">{{ strtoupper('reposicion') }}</span>
+        </td>
+
+        <td scope="row">
+            @if ($reposicioncaja->salidacuenta)
+                {{ $reposicioncaja->salidacuenta->cuenta->nombre }}
+            @endif
+        </td>
+
+
+
+        <td scope="row">
+            @if ($reposicioncaja->caja)
+                {{ $reposicioncaja->caja->nombre }}
+            @endif
+        </td>
+
+        <td scope="row">
+            @if ($reposicioncaja->motivo)
+                {{ $reposicioncaja->motivo->nombre }}
+            @endif
+        </td>
+
+        <td scope="row">
+            {{ $reposicioncaja->descripcion }}
+        </td>
+
+        <td scope="row">
+
+            <div class="d-flex justify-content-between">
+                <p> S/. </p>
+
+                <p> -{{ number_format($reposicioncaja->monto, 2) }}</p>
+
+
+            </div>
+        </td>
+
+        <td class="btn-group align-items-center">
+            @can('edit cuenta')
+                <a href="{{ route('tsreposicionescajas.printdoc', $reposicioncaja->id) }}"
+                    class="btnprn" style="margin-left: 5px;">
+
+                    <div class="printer">
+                        <div class="paper">
+
+                            <svg viewBox="0 0 8 8" class="svg">
+                                <path fill="#0077FF"
+                                    d="M6.28951 1.3867C6.91292 0.809799 7.00842 0 7.00842 0C7.00842 0 6.45246 0.602112 5.54326 0.602112C4.82505 0.602112 4.27655 0.596787 4.07703 0.595012L3.99644 0.594302C1.94904 0.594302 0.290039 2.25224 0.290039 4.29715C0.290039 6.34206 1.94975 8 3.99644 8C6.04312 8 7.70284 6.34206 7.70284 4.29715C7.70347 3.73662 7.57647 3.18331 7.33147 2.67916C7.08647 2.17502 6.7299 1.73327 6.2888 1.38741L6.28951 1.3867ZM3.99679 6.532C2.76133 6.532 1.75875 5.53084 1.75875 4.29609C1.75875 3.06133 2.76097 2.06018 3.99679 2.06018C4.06423 2.06014 4.13163 2.06311 4.1988 2.06905L4.2414 2.07367C4.25028 2.07438 4.26057 2.0758 4.27406 2.07651C4.81533 2.1436 5.31342 2.40616 5.67465 2.81479C6.03589 3.22342 6.23536 3.74997 6.23554 4.29538C6.23554 5.53084 5.23439 6.532 3.9975 6.532H3.99679Z">
+                                </path>
+                                <path fill="#0055BB"
+                                    d="M6.756 1.82386C6.19293 2.09 5.58359 2.24445 4.96173 2.27864C4.74513 2.17453 4.51296 2.10653 4.27441 2.07734C4.4718 2.09225 5.16906 2.07947 5.90892 1.66374C6.04642 1.58672 6.1743 1.49364 6.28986 1.38647C6.45751 1.51849 6.61346 1.6647 6.756 1.8235V1.82386Z">
+                                </path>
+                            </svg>
+
+                        </div>
+                        <div class="dot"></div>
+                        <div class="output">
+                            <div class="paper-out"></div>
+                        </div>
+                    </div>
+                </a>
+
+
+
+                <div>
+                    <a href="#" data-toggle="modal"
+                        data-target="#ModalEditar{{ $reposicioncaja->id }}" class="">
+
+                        <button class="editBtn" style="margin-left: 5px; margin-top:-3px">
+                            <svg height="1em" viewBox="0 0 512 512">
+                                <path
+                                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                                </path>
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+                @if ($reposicioncaja->salidascaja()->exists())
+                @else
+                    <div class="">
+                        <form class="eliminar-registro"
+                            action="{{ route('tsreposicionescajas.destroy', $reposicioncaja->id) }}"
+                            method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="bin-button btn anular eliminar-registro"
+                                style="margin-left: 3px;">
+                                <!-- SVG Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 39 7" class="bin-top">
+                                    <line stroke-width="4" stroke="white" y2="5"
+                                        x2="39" y1="5"></line>
+                                    <line stroke-width="3" stroke="white" y2="1.5"
+                                        x2="26.0357" y1="1.5" x1="12">
+                                    </line>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 33 39" class="bin-bottom">
+                                    <mask fill="white" id="path-1-inside-1_8_19">
+                                        <path
+                                            d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z">
+                                        </path>
+                                    </mask>
+                                    <path mask="url(#path-1-inside-1_8_19)" fill="white"
+                                        d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z">
+                                    </path>
+                                    <path stroke-width="4" stroke="white" d="M12 6L12 29">
+                                    </path>
+                                    <path stroke-width="4" stroke="white" d="M21 6V29">
+                                    </path>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 89 80" class="garbage">
+                                    <path fill="white"
+                                        d="M20.5 10.5L37.5 15.5L42.5 11.5L51.5 12.5L68.75 0L72 11.5L79.5 12.5H88.5L87 22L68.75 31.5L75.5066 25L86 26L87 35.5L77.5 48L70.5 49.5L80 50L77.5 71.5L63.5 58.5L53.5 68.5L65.5 70.5L45.5 73L35.5 79.5L28 67L16 63L12 51.5L0 48L16 25L22.5 17L20.5 10.5Z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </form>
+
+                    </div>
+                @endif
+            @endcan
+
+
+            <a href="{{ route('tsotrascajas.export-excel', $reposicioncaja->id) }}" class="btn btn-sm btn-success">Exportar</a>
+        </td>
+
+
+    </tr>
+    @endforeach
+@else
+    <tr>
+        <td colspan="9" class="text-center text-muted">
+            {{ __('No hay datos disponibles') }}
+        </td>
+    </tr>
+@endif

@@ -1,0 +1,16 @@
+[25-Nov-2024 18:43:26 UTC] PHP Fatal error:  Uncaught Error: Interface "Maatwebsite\Excel\Concerns\FromCollection" not found in /home/innovaminingsys/public_html/innova/app/Exports/TsMicajaExport.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/app/Exports/TsMicajaExport.php on line 16
+[25-Nov-2024 19:34:10 UTC] PHP Fatal error:  Uncaught Error: Interface "Maatwebsite\Excel\Concerns\FromCollection" not found in /home/innovaminingsys/public_html/innova/app/Exports/TsReportecuentaExport.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/app/Exports/TsReportecuentaExport.php on line 15
+[26-Nov-2024 05:48:01 UTC] PHP Fatal error:  Uncaught Error: Interface "Maatwebsite\Excel\Concerns\FromCollection" not found in /home/innovaminingsys/public_html/innova/app/Exports/ProductosExport.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/app/Exports/ProductosExport.php on line 10
+[27-Nov-2024 14:24:21 UTC] PHP Fatal error:  Uncaught Error: Interface "Maatwebsite\Excel\Concerns\FromCollection" not found in /home/innovaminingsys/public_html/innova/app/Exports/TsReportecuentaExport.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/app/Exports/TsReportecuentaExport.php on line 15

@@ -1,0 +1,8 @@
+[01-Nov-2024 12:30:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function abort() in /home/innovaminingsys/public_html/innova/resources/views/programacion/create-requerimiento.blade.php:91
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/resources/views/programacion/create-requerimiento.blade.php on line 91
+[27-Nov-2024 01:32:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function abort() in /home/innovaminingsys/public_html/innova/resources/views/programacion/create-requerimiento.blade.php:91
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/resources/views/programacion/create-requerimiento.blade.php on line 91

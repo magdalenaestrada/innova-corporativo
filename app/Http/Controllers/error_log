@@ -1,0 +1,12 @@
+[26-Nov-2024 03:08:05 UTC] PHP Fatal error:  Uncaught Error: Class "App\Http\Controllers\Controller" not found in /home/innovaminingsys/public_html/innova/app/Http/Controllers/TsIngresosCajasController.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/app/Http/Controllers/TsIngresosCajasController.php on line 11
+[26-Nov-2024 07:41:42 UTC] PHP Fatal error:  Uncaught Error: Class "App\Http\Controllers\Controller" not found in /home/innovaminingsys/public_html/innova/app/Http/Controllers/TsIngresocuentaController.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/app/Http/Controllers/TsIngresocuentaController.php on line 19
+[26-Nov-2024 08:44:50 UTC] PHP Fatal error:  Uncaught Error: Class "App\Http\Controllers\Controller" not found in /home/innovaminingsys/public_html/innova/app/Http/Controllers/GaritaController.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/innovaminingsys/public_html/innova/app/Http/Controllers/GaritaController.php on line 10
