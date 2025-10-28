@@ -20,24 +20,26 @@
                         <div class="col-md-3">
                             <label for="dni" class="form-label">DNI</label>
                             <div class="input-group">
-                                <input type="text" name="dni" id="dni" class="form-control" required
-                                    placeholder="Ingrese documento">
+                                <input type="text" name="dni" class="form-control modern-input" maxlength="9"
+                                    inputmode="numeric" pattern="\d*" required>
                                 <button class="btn btn-success" type="button" id="buscar_dni_btn">Buscar</button>
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label for="proveedor" class="form-label">Conductor</label>
                             <input type="text" name="proveedor" id="proveedor" class="form-control" required
-                                placeholder="Nombre del proveedor">
+                                placeholder="Nombre del conductor">
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="placa_vehiculo" class="form-label">Placa</label>
-                            <input type="text" name="placa_vehiculo" id="placa_vehiculo" class="form-control">
+                            <input type="text" name="placa_vehiculo" class="form-control modern-input"
+                                pattern="^[A-Za-z]{3}-\d{3,4}$" placeholder="No olvides incluir el guión medio" title="Formato válido: ABC-123 o ABC-1234" maxlength="8"
+                                required>
                         </div>
                         <div class="col-md-2">
                             <label for="kilometraje" class="form-label">Kilometraje
                             </label>
-                            <input type="text" name="kilometraje" id="kilometraje" class="form-control">
+                            <input type="number" name="kilometraje" class="form-control modern-input">
                         </div>
                     </div>
                     <div class="row">
@@ -60,7 +62,7 @@
 
                         <div class="col-md-3">
                             <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="text" name="telefono" id="telefono" class="form-control">
+                            <input type="number" name="telefono" id="telefono" class="form-control">
                         </div>
                     </div>
 
@@ -183,7 +185,7 @@
                         if (response.nombres) {
                             $('#proveedor').val(
                                 `${response.nombres} ${response.apellidoPaterno} ${response.apellidoMaterno}`
-                                );
+                            );
                         } else {
                             Swal.fire('Atención', 'No se encontró información para este DNI.',
                                 'warning');
@@ -209,7 +211,7 @@
                             $('#telefono').val(response.telefono ?? '');
                         } else {
                             Swal.fire('Atención', 'No se encontró el proveedor con ese RUC.',
-                            'warning');
+                                'warning');
                         }
                     },
                     error: function() {

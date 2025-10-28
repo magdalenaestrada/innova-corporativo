@@ -20,22 +20,27 @@
 
                     {{-- Datos principales --}}
                     <div class="row">
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-2 mb-3">
+                            <label class="form-label">Fecha de creación</label>
+                            <input type="date" name="fecha_creacion" class="form-control modern-input"
+                                value="{{ $nota->fecha_creacion ?? '' }}" max="{{ $hoy }}" required>
+                        </div>
+                        <div class="col-md-2 mb-3">
                             <label class="form-label">DNI</label>
                             <input type="text" name="dni" class="form-control modern-input"
-                                value="{{ $nota->dni ?? '' }}" maxlength="9" inputmode="numeric" pattern="\d*" required>
+                                value="{{ $nota->dni ?? '' }}" maxlength="8" inputmode="numeric" pattern="\d*" required>
 
                         </div>
-
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Conductor</label>
                             <input type="text" name="conductor" class="form-control modern-input"
                                 value="{{ $nota->conductor ?? '' }}">
                         </div>
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Fecha de creación</label>
-                            <input type="date" name="fecha_creacion" class="form-control modern-input"
-                                value="{{ $nota->fecha_creacion ?? '' }}" max="{{ $hoy }}" required>
+                        <div class="col-md-2 mb-3">
+                            <label class="form-label">Telefono</label>
+                            <input type="text" name="telefono" class="form-control modern-input"
+                                value="{{ $nota->telefono ?? '' }}" maxlength="9" inputmode="numeric" pattern="\d*" required>
+
                         </div>
                     </div>
                     <div class="row">

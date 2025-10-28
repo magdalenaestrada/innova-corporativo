@@ -27,7 +27,7 @@
                             <input type="text" name="search" id="search" class="input-search form-control"
                                 placeholder="Buscar aquí...">
                         </div>
-                        <a href="{{ route('nota-pedido.export-excel') }}" class="button_export-excel">
+                        <a href="{{ route('nota-pedido.reportes') }}" class="button_export-excel">
                             <span class="button__text">Descargar Excel</span>
                         </a>
                     </div>
@@ -40,6 +40,7 @@
                                     <th>{{ __('DNI') }}</th>
                                     <th>{{ __('CONDUCTOR') }}</th>
                                     <th>{{ __('PLACA') }}</th>
+                                    <th>{{ __('KILOMETRAJE') }}</th>
                                     <th>{{ __('ENCARGADO') }}</th>
                                     <th>{{ __('ACCIÓN') }}</th>
                                 </tr>
@@ -53,6 +54,7 @@
                                         <td>{{ $nota->dni }}</td>
                                         <td>{{ $nota->conductor }}</td>
                                         <td>{{ $nota->placa_vehiculo }}</td>
+                                        <td>{{ $nota->kilometraje }}</td>
                                         <td>{{ $nota->encargado->nombre ?? '-' }}</td>
 
                                         <td class="d-flex justify-content-center">

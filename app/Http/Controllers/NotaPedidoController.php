@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CombustibleExport;
 use App\Exports\NotaPedidoFullExport;
 use App\Http\Requests\NotaPedido\SubmitNotaPedidoRequest;
 use App\Models\DetalleNotaPedido;
@@ -130,11 +131,6 @@ class NotaPedidoController extends Controller
             ->make(true);
     }
 
-    public function exportExcel()
-    {
-        return Excel::download(new NotaPedidoFullExport, 'notas_pedido.xlsx');
-    }
-
     public function show(NotaPedido $nota)
     {
         $nota->load('encargado', 'detalles.producto');
@@ -197,15 +193,20 @@ class NotaPedidoController extends Controller
             $user = Auth::user();
             activity()
                 ->performedOn($nota_pedido)
-                ->log('El usuario '. $user .' actualizó una nota de pedido');
+                ->causedBy($user)
+                ->log('Actualizó una nota de pedido');
 
             return redirect()
                 ->route('nota-pedido.index')
                 ->with('success', 'La nota de pedido se actualizó correctamente.');
-        } catch (\Exception $e) {
-            return redirect()
-                ->back()
-                ->with('error', 'Error al actualizar: ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('❌ Error al crear nota de pedido', [
+                'mensaje' => $exception->getMessage(),
+                'linea' => $exception->getLine(),
+                'archivo' => $exception->getFile(),
+            ]);
+
+            dd('ERROR CAPTURADO:', $exception->getMessage(), $exception->getLine(), $exception->getFile());
         }
     }
 
@@ -246,5 +247,23 @@ class NotaPedidoController extends Controller
             ->get();
 
         return view('notas.partials._rows', compact('notas'));
+    }
+
+    public function reportes()
+    {
+        return view('notas.reportes');
+    }
+
+    public function exportCombustible(Request $request)
+    {
+        $placa = $request->get('placa');
+        $desde = $request->get('desde');
+        $hasta = $request->get('hasta');
+
+        if (!$desde || !$hasta) {
+            return redirect()->back()->with('error', 'Debe seleccionar un rango de fechas.');
+        }
+
+        return Excel::download(new CombustibleExport($placa, $desde, $hasta), 'reporte_combustible.xlsx');
     }
 }

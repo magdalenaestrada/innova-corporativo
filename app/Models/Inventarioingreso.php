@@ -10,9 +10,6 @@ class Inventarioingreso extends Model
     use HasFactory;
     protected $table = 'inventarioingresos';
     protected $fillable = ['descripcion', 'subtotal' ,'total','proveedor', 'documento_proveedor', 'tipomoneda','suma','descuento' , 'cotizacion',];
-
- 
-
     public function productos()
     {
         return $this->belongsToMany(Producto::class, 'detalleinventarioingresos')->withPivot('cantidad','precio', 'subtotal','id','cantidad_ingresada', 'estado','guiaingresoalmacen')->withTimestamps();
