@@ -19,7 +19,7 @@ class RegistroController extends Controller
      */
 
     public function __construct()
-    { 
+    {
         $this->middleware('permission:ver registro', ['only' => ['index']]);
         $this->middleware('permission:crear registro', ['only' => ['create', 'store']]);
         $this->middleware('permission:editar registro', ['only' => ['update', 'edit']]);
@@ -82,20 +82,16 @@ class RegistroController extends Controller
             // Llenar los campos restantes  
             $registro->documento_cliente = $request->input('documento_cliente');
             $registro->datos_cliente = $request->input('datos_cliente');
-            if ($registro->documento_conductor){
+            if ($registro->documento_conductor) {
                 $registro->documento_conductor = $request->input('documento_conductor');
-
-            }else
-            {
+            } else {
                 $registro->documento_conductor = '';
             }
 
 
-            if ($registro->documento_conductor){
+            if ($registro->documento_conductor) {
                 $registro->datos_conductor = $request->input('datos_conductor');
-
-            }else
-            {
+            } else {
                 $registro->datos_conductor = '';
             }
             $registro->documento_balanza = $request->input('documento_balanza');
@@ -254,52 +250,73 @@ class RegistroController extends Controller
         try {
             // Encuentra el modelo con el ID proporcionado
             $registro = Registro::findOrFail($id);
-    
+
             // Elimina el registro
             $registro->delete();
-    
+
             return redirect()->route('registros.index')->with('eliminar-registro', 'Registro eliminado con éxito.');
         } catch (\Exception $e) {
             // Maneja cualquier excepción que pueda ocurrir
             return redirect()->route('registros.index')->with('error', 'Error al eliminar el registro: ' . $e->getMessage());
         }
     }
-
     public function buscarDocumento(Request $request)
     {
         $documento = $request->input('documento');
-
         $token = env('APIS_TOKEN');
 
-        // Configurar el cliente GuzzleHttp
         $client = new Client([
-            'base_uri' => 'https://api.apis.net.pe',
+            'base_uri' => 'https://api.decolecta.com/v1/',
             'verify' => false,
         ]);
 
-        // Determinar si es DNI o RUC
-        $apiEndpoint = strlen($documento) === 8 ? '/v2/reniec/dni' : '/v2/sunat/ruc';
+        try {
+            if (strlen($documento) === 8) {
+                // 🔹 DNI (RENIEC)
+                $endpoint = 'reniec/dni';
+            } elseif (strlen($documento) === 11) {
+                // 🔹 RUC (SUNAT)
+                $endpoint = 'sunat/ruc/full';
+            } else {
+                return response()->json(['error' => 'Número de documento no válido.'], 400);
+            }
 
-        // Configurar los parámetros de la solicitud
-        $parameters = [
-            'http_errors' => false,
-            'connect_timeout' => 5,
-            'headers' => [
-                'Authorization' => 'Bearer ' . $token,
-                'Referer' => 'https://apis.net.pe/api-consulta-ruc',
-                'User-Agent' => 'laravel/guzzle',
-                'Accept' => 'application/json',
-            ],
-            'query' => ['numero' => $documento],
-        ];
+            $response = $client->request('GET', $endpoint, [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+                'query' => ['numero' => $documento],
+            ]);
 
-        // Realizar la solicitud a la API
-        $response = $client->request('GET', $apiEndpoint, $parameters);
+            $data = json_decode($response->getBody()->getContents(), true);
 
-        // Obtener los datos de respuesta como un arreglo
-        $responseData = json_decode($response->getBody()->getContents(), true);
+            // 🔁 Adaptar el formato para mantener compatibilidad
+            if (strlen($documento) === 8) {
+                // Formato antiguo Reniec
+                $responseData = [
+                    'numeroDocumento' => $data['document_number'] ?? $documento,
+                    'nombres' => $data['first_name'] ?? '',
+                    'apellidoPaterno' => $data['first_last_name'] ?? '',
+                    'apellidoMaterno' => $data['second_last_name'] ?? '',
+                ];
+            } else {
+                // Formato antiguo Sunat
+                $responseData = [
+                    'numeroDocumento' => $data['numero_documento'] ?? $documento,
+                    'razonSocial' => $data['razon_social'] ?? '',
+                    'direccion' => $data['direccion'] ?? '',
+                    'estado' => $data['estado'] ?? '',
+                    'condicion' => $data['condicion'] ?? '',
+                ];
+            }
 
-        // Devolver la respuesta o realizar otras acciones según tus necesidades
-        return response()->json($responseData);
+            return response()->json($responseData);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Error al consultar la API: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 }

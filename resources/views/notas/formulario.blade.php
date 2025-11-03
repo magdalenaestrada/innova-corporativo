@@ -27,14 +27,15 @@
                         </div>
                         <div class="col-md-4">
                             <label for="proveedor" class="form-label">Conductor</label>
-                            <input type="text" name="proveedor" id="proveedor" class="form-control" required
+                            <input type="text" name="proveedor" id="nombre" class="form-control" required
                                 placeholder="Nombre del conductor">
+
                         </div>
                         <div class="col-md-3">
                             <label for="placa_vehiculo" class="form-label">Placa</label>
                             <input type="text" name="placa_vehiculo" class="form-control modern-input"
-                                pattern="^[A-Za-z]{3}-\d{3,4}$" placeholder="No olvides incluir el guión medio" title="Formato válido: ABC-123 o ABC-1234" maxlength="8"
-                                required>
+                                pattern="^[A-Za-z]{3}-\d{3,4}$" placeholder="No olvides incluir el guión medio"
+                                title="Formato válido: ABC-123 o ABC-1234" maxlength="8" required>
                         </div>
                         <div class="col-md-2">
                             <label for="kilometraje" class="form-label">Kilometraje
@@ -161,69 +162,37 @@
             $('#inputDetalles').val(JSON.stringify(detalles));
         });
 
-        // === Buscar proveedor por RUC o razón social ===
-        // === Buscar proveedor por DNI o RUC ===
-        $('#buscar_dni_btn').click(function() {
-            const documento = $('#dni').val().trim();
+        $(document).ready(function() {
+            $("#buscar_dni_btn").on("click", function() {
+                const documento = $("input[name='dni']").val().trim();
 
-            if (documento.length < 8) {
-                Swal.fire('Atención', 'Ingrese un número de documento válido.', 'warning');
-                return;
-            }
+                if (documento === "") {
+                    alert("Por favor, ingrese un DNI.");
+                    return;
+                }
 
-            // 🟢 Buscar por DNI (consulta tipo Reniec)
-            if (documento.length === 8) {
                 $.ajax({
                     url: "{{ route('buscar.documento') }}",
-                    type: 'POST',
+                    type: "POST",
                     data: {
-                        _token: '{{ csrf_token() }}',
                         documento: documento,
-                        tipo_documento: 'dni'
+                        _token: "{{ csrf_token() }}",
                     },
                     success: function(response) {
                         if (response.nombres) {
-                            $('#proveedor').val(
-                                `${response.nombres} ${response.apellidoPaterno} ${response.apellidoMaterno}`
-                            );
+                            $("#nombre").val(response.nombres + " " + response.apellidoPaterno +
+                                " " + response.apellidoMaterno);
+                        } else if (response.razonSocial) {
+                            $("#nombre").val(response.razonSocial);
                         } else {
-                            Swal.fire('Atención', 'No se encontró información para este DNI.',
-                                'warning');
+                            alert("No se encontraron datos.");
                         }
                     },
                     error: function() {
-                        Swal.fire('Error', 'Hubo un problema al consultar el DNI.', 'error');
-                    }
-                });
-            }
-
-            // 🟡 Buscar por RUC (consulta tipo Sunat)
-            else if (documento.length === 11) {
-                $.ajax({
-                    url: "{{ route('autocompbyruc.proveedor') }}",
-                    type: 'GET',
-                    data: {
-                        ruc: documento
+                        alert("Ocurrió un error al consultar el documento.");
                     },
-                    success: function(response) {
-                        if (response) {
-                            $('#proveedor').val(response.razon_social ?? '');
-                            $('#telefono').val(response.telefono ?? '');
-                        } else {
-                            Swal.fire('Atención', 'No se encontró el proveedor con ese RUC.',
-                                'warning');
-                        }
-                    },
-                    error: function() {
-                        Swal.fire('Error', 'Hubo un problema al consultar el RUC.', 'error');
-                    }
                 });
-            }
-
-            // ❌ Documento inválido
-            else {
-                Swal.fire('Atención', 'El documento debe tener 8 (DNI) o 11 (RUC) dígitos.', 'warning');
-            }
+            });
         });
     </script>
 @endsection
