@@ -39,22 +39,33 @@
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Telefono</label>
                             <input type="text" name="telefono" class="form-control modern-input"
-                                value="{{ $nota->telefono ?? '' }}" maxlength="9" inputmode="numeric" pattern="\d*" required>
+                                value="{{ $nota->telefono ?? '' }}" maxlength="9" inputmode="numeric" pattern="\d*" >
 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Placa</label>
-                            <input type="text" name="placa_vehiculo" class="form-control modern-input"
-                                value="{{ $nota->placa_vehiculo ?? '' }}" pattern="^[A-Za-z]{3}-\d{3,4}$"
-                                title="Formato válido: ABC-123 o ABC-1234" maxlength="8" required>
-
+                            <input type="text" 
+                                name="placa_vehiculo" 
+                                class="form-control modern-input"
+                                value="{{ $nota->placa_vehiculo ?? '' }}" 
+                                pattern="^[A-Za-z0-9]+-[A-Za-z0-9]+$"
+                                placeholder="Ejemplo: ABC-123"
+                                title="Debe contener letras y números separados por un guion medio (Ejemplo: ABC-123)"
+                                maxlength="10" 
+                                required
+                                oninput="this.value = this.value.toUpperCase();">
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Kilometraje</label>
-                            <input type="number" name="kilometraje" class="form-control modern-input"
-                                value="{{ $nota->kilometraje ?? '' }}">
+                            <input type="number" 
+                                name="kilometraje" 
+                                class="form-control modern-input"
+                                value="{{ $nota->kilometraje ?? '' }}" 
+                                step="0.01" 
+                                min="0" 
+                                placeholder="Ejemplo: 125.75">
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -107,7 +118,7 @@
                                 </td>
                                 <td>
                                     <input type="number" class="form-control modern-input cantidad text-center"
-                                        min="1" step="1" value="{{ $detalle->cantidad }}" required>
+                                        min="1" step="0.01" value="{{ $detalle->cantidad }}" required>
                                 </td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-sm btn-danger eliminarFila">X</button>
