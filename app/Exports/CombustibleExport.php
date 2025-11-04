@@ -6,8 +6,6 @@ use App\Models\NotaPedido;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithTitle;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Illuminate\Support\Facades\DB;
 
 class CombustibleExport implements FromView, WithTitle
 {
@@ -24,58 +22,70 @@ class CombustibleExport implements FromView, WithTitle
 
     public function view(): View
     {
-        // Filtramos por rango de fechas y (opcionalmente) placa
         $query = NotaPedido::with(['detalles.producto'])
             ->whereBetween('fecha_creacion', [$this->desde, $this->hasta])
-            ->orderBy('placa_vehiculo');
+            ->where('estado', 'A')
+            ->orderBy('fecha_creacion');
 
         if ($this->placa) {
             $query->where('placa_vehiculo', $this->placa);
         }
 
         $notas = $query->get()->groupBy('placa_vehiculo');
-
         $data = [];
 
         foreach ($notas as $placa => $lista) {
-            // Ordenar las notas por fecha
-            $lista = $lista->sortBy('fecha_creacion');
+            if ($lista->isEmpty()) continue;
 
-            $km_inicial = $lista->first()->kilometraje ?? 0;
-            $km_final = $lista->last()->kilometraje ?? 0;
-            $km_recorrido = max(0, $km_final - $km_inicial);
+            // Ordenar por kilometraje para coherencia
+            $lista = $lista->sortBy('kilometraje')->values();
 
-            // Agrupar por producto (gasolina, petróleo, etc.)
             $productos = [];
-            foreach ($lista as $nota) {
-                foreach ($nota->detalles as $detalle) {
-                    $producto = $detalle->producto->nombre ?? 'Sin nombre';
-                    if (!isset($productos[$producto])) {
-                        $productos[$producto] = 0;
-                    }
-                    $productos[$producto] += $detalle->cantidad;
+            $observaciones = [];
+            $total_km = 0;
+
+            for ($i = 1; $i < $lista->count(); $i++) {
+                $anterior = $lista[$i - 1];
+                $actual = $lista[$i];
+
+                $km_recorrido = $actual->kilometraje - $anterior->kilometraje;
+
+                if ($km_recorrido <= 0) {
+                    $observaciones[] = "Kilometraje irregular en {$placa} ({$actual->kilometraje} < {$anterior->kilometraje}) en {$actual->fecha_creacion}.";
+                    continue;
+                }
+
+                $total_km += $km_recorrido;
+
+                foreach ($actual->detalles as $detalle) {
+                    $nombre = $detalle->producto->nombre ?? 'Sin nombre';
+                    $productos[$nombre] = ($productos[$nombre] ?? 0) + $detalle->cantidad;
                 }
             }
 
+            $km_inicial = $lista->min('kilometraje');
+            $km_final   = $lista->max('kilometraje');
+
             foreach ($productos as $nombre => $cantidad) {
-                $consumo_por_km = $km_recorrido > 0 ? $cantidad / $km_recorrido : 0;
+                $consumo_por_km = $total_km > 0 ? round($cantidad / $total_km, 3) : 0;
 
                 $data[] = [
-                    'placa' => $placa,
-                    'fecha_inicio' => $this->desde,
-                    'fecha_fin' => $this->hasta,
-                    'km_inicial' => $km_inicial,
-                    'km_final' => $km_final,
-                    'km_recorridos' => $km_recorrido,
-                    'producto' => $nombre,
-                    'cantidad_total' => $cantidad,
-                    'consumo_por_km' => round($consumo_por_km, 3),
+                    'placa'            => $placa,
+                    'fecha_inicio'     => $this->desde,
+                    'fecha_fin'        => $this->hasta,
+                    'km_inicial'       => $km_inicial,
+                    'km_final'         => $km_final,
+                    'km_recorridos'    => $total_km,
+                    'producto'         => $nombre,
+                    'cantidad_total'   => $cantidad,
+                    'consumo_por_km'   => $consumo_por_km,
+                    'observaciones'    => implode("\n", $observaciones),
                 ];
             }
         }
 
         return view('notas.export', [
-            'data' => $data,
+            'data'  => $data,
             'desde' => $this->desde,
             'hasta' => $this->hasta,
             'placa' => $this->placa,

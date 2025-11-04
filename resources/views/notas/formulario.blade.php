@@ -146,8 +146,10 @@
             $(button).closest('tr').remove();
         }
 
-        // === Serializar datos antes de enviar ===
+        // === Serializar y enviar datos por AJAX ===
         $('#formNotaPedido').on('submit', function(e) {
+            e.preventDefault(); // Evita que se recargue la página
+
             const detalles = [];
             $('#table_body tr').each(function() {
                 const producto = $(this).find('select').val();
@@ -160,7 +162,42 @@
                 }
             });
             $('#inputDetalles').val(JSON.stringify(detalles));
+
+            const formData = $(this).serialize();
+
+            $.ajax({
+                url: "{{ route('nota-pedido.store') }}",
+                type: "POST",
+                data: formData,
+                success: function(res) {
+                    if (res.success) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Éxito",
+                            text: res.message,
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => {
+                            window.location.href = "{{ route('nota-pedido.index') }}";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Atención",
+                            text: res.message,
+                        });
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: "Ocurrió un problema al registrar la nota.",
+                    });
+                },
+            });
         });
+
 
         $(document).ready(function() {
             $("#buscar_dni_btn").on("click", function() {

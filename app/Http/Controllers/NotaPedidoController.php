@@ -49,9 +49,21 @@ class NotaPedidoController extends Controller
     public function store(Request $request)
     {
         try {
-            Log::info('🟢 Datos recibidos en request', $request->all());
+            Log::info('Datos recibidos en request', $request->all());
 
             $usuario = Auth::user();
+
+            $maxKm = NotaPedido::where('placa_vehiculo', Str::upper($request->placa_vehiculo))
+            ->where('estado', 'A')
+                ->max('kilometraje');
+
+            if ($maxKm !== null && $request->kilometraje < $maxKm) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "El kilometraje del vehículo con placa {$request->placa_vehiculo} debe ser mayor o igual al mayor registrado ({$maxKm} km)."
+                ]);
+            }
+
 
             $insert = [
                 "codigo" => $this->generarCodigo(),
@@ -59,24 +71,21 @@ class NotaPedidoController extends Controller
                 "dni" => $request->dni,
                 "conductor" => $request->proveedor,
                 "telefono" => $request->telefono,
-                "placa_vehiculo" => $request->placa_vehiculo,
+                "placa_vehiculo" => Str::upper($request->placa_vehiculo),
                 "kilometraje" => $request->kilometraje,
                 "usuario_id" => $usuario ? $usuario->id : null,
                 "encargado_id" => $request->encargado_id,
             ];
 
-            Log::info('🟠 Datos de cabecera', $insert);
+            Log::info('Datos de cabecera', $insert);
 
             $nota_pedido = DB::transaction(function () use ($insert, $request) {
                 $nota_pedido = NotaPedido::create($insert);
 
                 $detalles = json_decode($request->detalles, true);
-                Log::info('🟢 Detalles decodificados', $detalles);
+                Log::info('Detalles decodificados', $detalles);
 
                 foreach ($detalles as $detalle) {
-                    Log::info('🔹 Procesando detalle', $detalle);
-
-                    // Validar datos
                     if (empty($detalle['producto']) || empty($detalle['cantidad'])) {
                         throw new \Exception('Faltan datos de producto o cantidad');
                     }
@@ -84,7 +93,7 @@ class NotaPedidoController extends Controller
                     DetalleNotaPedido::create([
                         "nota_pedido_id" => $nota_pedido->id,
                         "cantidad" => $detalle["cantidad"],
-                        "producto_id" => $detalle["producto"], // ✅ corregido
+                        "producto_id" => $detalle["producto"],
                     ]);
 
                     $producto = Producto::findOrFail($detalle["producto"]);
@@ -96,22 +105,25 @@ class NotaPedidoController extends Controller
                 return $nota_pedido;
             });
 
-            Log::info('✅ Nota de pedido guardada', ['id' => $nota_pedido->id]);
+            Log::info('Nota de pedido guardada', ['id' => $nota_pedido->id]);
 
-            return redirect()
-                ->route('nota-pedido.index')
-                ->with('success', 'La nota de pedido se creó correctamente.');
+            return response()->json([
+                'success' => true,
+                'message' => 'La nota de pedido se creó correctamente.'
+            ]);
         } catch (\Exception $exception) {
-            Log::error('❌ Error al crear nota de pedido', [
+            Log::error('Error al crear nota de pedido', [
                 'mensaje' => $exception->getMessage(),
                 'linea' => $exception->getLine(),
             ]);
 
-            return redirect()
-                ->back()
-                ->with('error', 'Error al crear la nota de pedido: ' . $exception->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al crear la nota de pedido: ' . $exception->getMessage()
+            ]);
         }
     }
+
     public function generarCodigo()
     {
         $count = NotaPedido::count() + 1;
@@ -200,7 +212,7 @@ class NotaPedidoController extends Controller
                 ->route('nota-pedido.index')
                 ->with('success', 'La nota de pedido se actualizó correctamente.');
         } catch (\Exception $exception) {
-            Log::error('❌ Error al crear nota de pedido', [
+            Log::error('Error al crear nota de pedido', [
                 'mensaje' => $exception->getMessage(),
                 'linea' => $exception->getLine(),
                 'archivo' => $exception->getFile(),

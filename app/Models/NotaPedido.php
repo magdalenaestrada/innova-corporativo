@@ -18,6 +18,7 @@ class NotaPedido extends Model
         "kilometraje",
         "usuario_id",
         "encargado_id",
+        "estado"
     ];
 
     public function usuario()

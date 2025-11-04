@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('kilometraje', 10, 1)->nullable();
             $table->foreignId("usuario_id")->references("id")->on("users");
             $table->foreignId('encargado_id')->nullable()->constrained('empleados')->nullOnDelete();
-            $table->enum("estado", ["A", "I"])->default("I");
+            $table->enum("estado", ["A", "I"])->default("A");
             $table->timestamps();
             $table->softDeletes();
         });
