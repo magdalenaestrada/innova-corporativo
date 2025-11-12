@@ -58,7 +58,7 @@ class CombustibleExport implements FromView, WithTitle
                 $total_km += $km_recorrido;
 
                 foreach ($actual->detalles as $detalle) {
-                    $nombre = $detalle->producto->nombre ?? 'Sin nombre';
+                    $nombre = $detalle->producto->nombre_producto ?? 'Sin nombre';
                     $productos[$nombre] = ($productos[$nombre] ?? 0) + $detalle->cantidad;
                 }
             }
