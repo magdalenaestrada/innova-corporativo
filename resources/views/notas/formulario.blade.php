@@ -34,14 +34,15 @@
                         <div class="col-md-3">
                             <label for="placa_vehiculo" class="form-label">Placa</label>
                             <input type="text" name="placa_vehiculo" class="form-control modern-input"
-                                pattern="^[A-Za-z]{3}-\d{3,4}$" placeholder="No olvides incluir el guión medio"
-                                title="Formato válido: ABC-123 o ABC-1234" maxlength="8" required>
+                                pattern="^[A-Za-z0-9]+-[A-Za-z0-9]+$"
+                                placeholder="Ejemplo: ABC-123"
+                                title="Debe contener letras y números separados por un guion medio (Ejemplo: ABC-123 )"
+                                maxlength="10" required>
                         </div>
-                        <div class="col-md-2">
-                            <label for="kilometraje" class="form-label">Kilometraje
-                            </label>
-                            <input type="number" name="kilometraje" class="form-control modern-input">
-                        </div>
+                       <div class="col-md-2">
+                        <label for="kilometraje" class="form-label">Kilometraje</label>
+                        <input type="number" name="kilometraje" class="form-control modern-input" step="0.01" min="0" placeholder="Ejemplo: 125.75">
+                    </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">

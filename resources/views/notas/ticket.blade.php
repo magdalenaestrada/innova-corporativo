@@ -231,7 +231,7 @@
                 <h4>Datos del Proveedor</h4>
                 <div class="kv">
                     <div class="label">Razón Social</div>
-                    <div class="value">TERRA MINING S.R.L</div>
+                    <div class="value">AGROTRAC IMPORT & EXPORT S.R.L.</div>
                 </div>
                 <div class="kv">
                     <div class="label">RUC</div>
@@ -284,6 +284,8 @@
             </table>
         @endif
     </div>
+    <br>
+     <br>
     <div style="display: flex; justify-content: space-around; margin-top: 60px; text-align: center;">
         <div style="width: 40%;">
             <div style="border-top: 1px solid #000; margin: 0 auto; padding-top: 5px;">
