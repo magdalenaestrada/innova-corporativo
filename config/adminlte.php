@@ -15,7 +15,7 @@ return [
     */
 
     'title' => '',
-    'title_prefix' => 'SISTEMA AGROTRAC |',
+    'title_prefix' => 'SISTEMA GRUPO INNOVA |',
     'title_postfix' => '',
 
     /*
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<span style="font-size: 1rem;"><b>SISTEMA AGROTRAC </b></span>',
-    'logo_img' => 'vendor/adminlte/dist/img/agrotrac.jpeg',
+    'logo' => '<span style="font-size: 1rem;"><b> GRUPO INNOVA </b></span>',
+    'logo_img' => 'vendor/adminlte/dist/img/innova.png',
     'logo_img_class' => 'brand-image  ',
     'logo_img_xl' => null,
     'logo_img_xl_class' => '',
-    'logo_img_alt' => 'AGROTRAC LOGO',
+    'logo_img_alt' => 'INNOVA LOGO',
 
     /*
     |--------------------------------------------------------------------------
@@ -113,8 +113,8 @@ return [
         'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/agrotrac.jpeg',
-            'alt' => 'Agrotrac logo preloader imagw',
+            'path' => 'vendor/adminlte/dist/img/innova.jpeg',
+            'alt' => 'Innova logo preloader imagw',
             'effect' => 'animation__shake',
             'width' => 60,
             'height' => 60,
@@ -351,6 +351,13 @@ return [
 
         ],
 
+        ['header' => 'COMBUSTIBLE'],
+        [
+                    'text' => 'Notas de pedido',
+                    'url' => '/nota-pedido',
+                    'can' => 'ver producto',
+        ],
+
 
 
         ['header' => 'INVENTARIO', 'can' => 'ver producto'],
@@ -366,11 +373,7 @@ return [
                     'url' => '/productos',
                     'can' => 'ver producto',
                 ],
-                [
-                    'text' => 'Notas de pedido',
-                    'url' => '/nota-pedido',
-                    'can' => 'ver producto',
-                ],
+               
                 [
                     'text' => 'Ordenes de compra',
                     'url' => '/inventarioingresos',

@@ -1,6 +1,6 @@
 {
-    "name" : "SistemaAgrotrac",
-    "short_name": "SistemaAgrotrac",
+    "name" : "SistemaInnova",
+    "short_name": "SistemaInnova",
     "description": "",
     "start_url": "http://app.local",
     "display": "standalone",

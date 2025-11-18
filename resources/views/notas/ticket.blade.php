@@ -210,8 +210,8 @@
             <div class="brand">
                 <img src="{{ asset('images/agrotrac.jpeg') }}" alt="Logo Agrotrac">
                 <div>
-                    <div style="font-weight:700">AGROTRAC IMPORT & EXPORT S.R.L.</div>
-                    <div class="muted" style="font-size:11px">RUC 20454840098</div>
+                    <div style="font-weight:700">GRUPO INNOVA CORPORATIVO S.A.C.</div>
+                    <div class="muted" style="font-size:11px">RUC 20613573691</div>
                 </div>
             </div>
             <div class="text-end">
@@ -231,11 +231,11 @@
                 <h4>Datos del Proveedor</h4>
                 <div class="kv">
                     <div class="label">Razón Social</div>
-                    <div class="value">AGROTRAC IMPORT & EXPORT S.R.L.</div>
+                    <div class="value">GRUPO INNOVA CORPORATIVO S.A.C.</div>
                 </div>
                 <div class="kv">
                     <div class="label">RUC</div>
-                    <div class="value">20454840098</div>
+                    <div class="value">20613573691</div>
                 </div>
             </div>
 

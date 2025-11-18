@@ -48,7 +48,7 @@
                 <span class="shadow"></span>
             </div>
         </div>
-        <h3>AGROTRAC IMPORT & EXPORT S.R.L.</h3>
+        <h3>GRUPO INNOVA CORPORATIVO S.A.C.</h3>
         <div class="pyramid-loader">
             <div class="wrapper">
                 <span class="side side1"></span>

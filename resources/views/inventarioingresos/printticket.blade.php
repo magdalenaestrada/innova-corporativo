@@ -74,8 +74,8 @@
       <div class="brand">
         <img src="{{ asset('images/agrotrac.jpeg') }}" alt="Logo Agrotrac">
         <div>
-          <div style="font-weight:700">AGROTRAC IMPORT & EXPORT S.R.L. S.A.C</div>
-          <div class="muted" style="font-size:11px">RUC 20454840098</div>
+          <div style="font-weight:700">GRUPO INNOVA CORPORATIVO S.A.C.</div>
+          <div class="muted" style="font-size:11px">RUC 20613573691</div>
         </div>
       </div>
       <div class="text-end">
@@ -93,8 +93,8 @@
     <div class="grid-2">
       <div class="card">
         <h4>Datos del Cliente</h4>
-        <div class="kv"><div class="label">Razón Social</div><div class="value">AGROTRAC IMPORT & EXPORT S.R.L. S.A.C</div></div>
-        <div class="kv"><div class="label">RUC</div><div class="value">20454840098</div></div>
+        <div class="kv"><div class="label">Razón Social</div><div class="value"> S.A.C</div></div>
+        <div class="kv"><div class="label">RUC</div><div class="value">20613573691</div></div>
         <div class="kv"><div class="label">Estado</div><div class="value">{{ $inventarioingreso->estado }}</div></div>
         <div class="kv"><div class="label">Cotización</div><div class="value">{{ $inventarioingreso->cotizacion }}</div></div>
       </div>

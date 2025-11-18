@@ -28,7 +28,7 @@
 
     <div class="container">
     <br>
-        <p class="text-center mr-1" style="margin-bottom: -5px">AGROTRAC IMPORT & EXPORT S.R.L.</p>
+        <p class="text-center mr-1" style="margin-bottom: -5px">GRUPO INNOVA CORPORATIVO S.A.C.</p>
 
 
 

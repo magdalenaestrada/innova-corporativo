@@ -29,8 +29,8 @@
         <br>
 
         <p><strong>Fecha de creación de la salida:</strong> {{ $invsalidarapida->created_at }}</p>
-        <p><strong>Empresa: </strong>AGROTRAC IMPORT & EXPORT S.R.L. S.A.C</p>
-        <p><strong>Ruc: </strong>20454840098 </p>
+        <p><strong>Empresa: </strong>GRUPO INNOVA CORPORATIVO S.A.C.</p>
+        <p><strong>Ruc: </strong>20613573691 </p>
 
         <p><strong>Solicitante: </strong>{{ $invsalidarapida->nombre_solicitante }}</p>
         <p><strong>Dni del solicitante: </strong>{{ $invsalidarapida->documento_solicitante }}</p>

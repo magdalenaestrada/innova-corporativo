@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Agrotrac') }}</title>
+    <title>{{ config('app.name', 'Innova') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -48,7 +48,7 @@
                             <div class="text-center" style="margin-top: -8%">
 
                                 <h6 class="mb-5">
-                                    {{ __('LIQ. COMEDOR') }} - AGROTRAC IMPORT & EXPORT S.R.L.
+                                    {{ __('LIQ. COMEDOR') }} - GRUPO INNOVA CORPORATIVO
                                 </h6>
 
 
