@@ -13,7 +13,7 @@
     <div class="container pt-2">
         <br>
         <div class="text-end">
-            <img  style="width: 90px; margin-top: -1%" src="{{asset('images/agrotrac.jpeg')}}" alt="">
+            <img  style="width: 90px; margin-top: -1%" src="{{asset('images/Innova.png')}}" alt="">
         </div>
 
         <div class="text-center" style="margin-top: -8%;">

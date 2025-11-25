@@ -201,14 +201,14 @@
 <body>
     <!-- Marca de agua -->
     <div class="watermark">
-        <img src="{{ asset('images/terra_mining.jpg') }}" alt="Marca de agua">
+        <img src="{{ asset('images/innova.jpg') }}" alt="Marca de agua">
     </div>
 
     <div class="doc">
         <!-- Header -->
         <div class="doc-header">
             <div class="brand">
-                <img src="{{ asset('images/agrotrac.jpeg') }}" alt="Logo Agrotrac">
+                <img src="{{ asset('images/innova.png') }}" alt="Logo INNOVA">
                 <div>
                     <div style="font-weight:700">GRUPO INNOVA CORPORATIVO S.A.C.</div>
                     <div class="muted" style="font-size:11px">RUC 20613573691</div>
