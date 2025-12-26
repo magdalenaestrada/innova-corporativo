@@ -39,25 +39,25 @@
 
 
     <div class="fl text-center">
-        <div class="truck-loader">
-    <div class="truck">
-        <div class="cabin"></div>
-        <div class="back"></div>
-        <div class="wheel w1"></div>
-        <div class="wheel w2"></div>
-    </div>
-    <div class="loader-road"></div>
-</div>
-        <h3>GRUPO INNOVA CORPORATIVO S.A.C.</h3>
-          <div class="truck-loader">
-    <div class="truck">
-        <div class="cabin"></div>
-        <div class="back"></div>
-        <div class="wheel w1"></div>
-        <div class="wheel w2"></div>
-    </div>
-    <div class="loader-road"></div>
-</div>
+        <div class="pyramid-loader pyramid-loader2">
+            <div class="wrapper">
+                <span class="side side1"></span>
+                <span class="side side2"></span>
+                <span class="side side3"></span>
+                <span class="side side4"></span>
+                <span class="shadow"></span>
+            </div>
+        </div>
+        <h1>GRUPO INNOVA CORPORATIVO</h1>
+        <div class="pyramid-loader">
+            <div class="wrapper">
+                <span class="side side1"></span>
+                <span class="side side2"></span>
+                <span class="side side3"></span>
+                <span class="side side4"></span>
+                <span class="shadow"></span>
+            </div>
+        </div>
     </div>
 
 
